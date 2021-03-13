@@ -3,7 +3,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
-<h1> viz 1 </h1>
+
 <div>
 <script type="text/javascript">
 
@@ -25,6 +25,7 @@ var chart = new Chart(ctx, {
 
     // Configuration options go here
     options: {
+
     scales: {
             yAxes: [{
                 display: true,
@@ -33,8 +34,29 @@ var chart = new Chart(ctx, {
                     min: 0, // minimum value
                     max: 10 // maximum value
                 }
+
             }]
         }
+
+    title: {
+            display: true,
+            text: 'Version 2',
+            padding: 30,
+            fontSize: 32,
+
+
+        }
+
+     layout: {
+            padding: {
+                left: 50,
+                right: 50,
+                top: 0,
+                bottom: 0
+            }
+        }
+
+
     }
 });
 
