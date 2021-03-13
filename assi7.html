@@ -42,41 +42,4 @@ var chart = new Chart(ctx, {
 </script>
 </div>
 
-<h1> viz 1 </h1>
-<div>
-<script type="text/javascript">
 
-var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'bar',
-
-    // The data for our dataset
-    data: {
-        labels: ['x', 'y'],
-        datasets: [{
-            label: 'Fake data',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [1,7],
-        }]
-    },
-
-    // Configuration options go here
-    options: {
-    scales: {
-            yAxes: [{
-                display: true,
-                stacked: true,
-                ticks: {
-                    min: 0, // minimum value
-                    max: 10 // maximum value
-                }
-            }]
-        }
-    }
-});
-
-
-</script>
-</div>
