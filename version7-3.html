@@ -10,7 +10,7 @@
 var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
     // The type of chart we want to create
-    type: 'bar',
+    type: 'line',
 
     // The data for our dataset
     data: {
@@ -19,7 +19,7 @@ var chart = new Chart(ctx, {
             label: 'Fake data',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
-            data: [1,7],
+            data: [1,7,4,7,4,2,8,1,4,6,3,2,5,7,0],
         }]
     },
 
