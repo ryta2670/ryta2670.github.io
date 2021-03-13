@@ -10,7 +10,7 @@
 var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
     // The type of chart we want to create
-    type: 'line',
+    type: 'bar',
 
     // The data for our dataset
     data: {
@@ -19,16 +19,7 @@ var chart = new Chart(ctx, {
             label: 'Fake data',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
-            data: [{
-                x: -10,
-                y: 0
-            }, {
-                x: 0,
-                y: 10
-            }, {
-                x: 10,
-                y: 5
-            }]
+            data: [1,7],
             
         }]
     },
@@ -50,7 +41,7 @@ var chart = new Chart(ctx, {
 
     title: {
             display: true,
-            text: 'Version 2',
+            text: 'Version 3',
             padding: 30,
             fontSize: 32,
 
@@ -67,7 +58,7 @@ var chart = new Chart(ctx, {
         },
 
     tooltips: {
-            mode: 'point'
+            events: ['click']
         }
 
 
@@ -78,4 +69,8 @@ var chart = new Chart(ctx, {
 </script>
 </div>
 
+<p>
+    I added the interaction that gives the viewer all the items that intersect a point. In this case no items intersect it, so nothing shows up
+
+</p>
 
