@@ -7,30 +7,30 @@
 <div>
 <script type="text/javascript">
 
-$.getJSON("mar21_data.json", function(data) {
-   var labels = data.test_data.map(function(e) {
-      return e[0];
-   });
-   var data = data.test_data.map(function(e) {
-      return e[1];
-   });
+var jsonfile = {"jsonarray": [{"name": "Precinct111", "warnings": 33}, {"name": "Precint112", "warnings": 8}]};
 
-var ctx = document.getElementById('canvas').getContext('2d');
-   var chart = new Chart(ctx, {
-      type: 'line',
-      data: {
-         labels: labels,
-         datasets: [{
-            backgroundColor: 'rgb(129, 198, 2228)',
-            borderColor: 'rgb(0, 150, 215)',
-            data: data
-         }]
-      },
-      options: {
-         responsive: 'true',
-      }
-   });
+
+var labels = jsonfile.jsonarray.map(function(e) {
+   return e.name;
 });
+var data = jsonfile.jsonarray.map(function(e) {
+   return e.warnings;
+});;
+
+var ctx = canvas.getContext('2d');
+var config = {
+   type: 'line',
+   data: {
+      labels: labels,
+      datasets: [{
+         label: 'Graph Line',
+         data: data,
+         backgroundColor: 'rgba(0, 119, 204, 0.3)'
+      }]
+   }
+};
+
+var chart = new Chart(ctx, config);
 </script>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
