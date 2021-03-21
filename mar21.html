@@ -6,7 +6,8 @@
 <h1> viz 1 </h1>
 <div>
 <script type="text/javascript">
-
+var canvas = document.getElementById("myChart");
+var ctx = canvas.getContext("2d");
 var jsonfile = {"jsonarray": [{"name": "Precinct111", "warnings": 33}, {"name": "Precint112", "warnings": 8}]};
 
 
@@ -19,15 +20,51 @@ var data = jsonfile.jsonarray.map(function(e) {
 
 var ctx = canvas.getContext('2d');
 var config = {
-   type: 'line',
+   type: 'bar',
    data: {
       labels: labels,
       datasets: [{
-         label: 'Graph Line',
+         label: 'number of arrests',
          data: data,
          backgroundColor: 'rgba(0, 119, 204, 0.3)'
       }]
-   }
+   },
+
+   // Configuration options go here
+    options: {
+
+    scales: {
+            yAxes: [{
+                display: true,
+                stacked: true,
+                ticks: {
+                    min: 0, // minimum value
+                    max: 40 // maximum value
+                }
+
+            }]
+        },
+
+    title: {
+            display: true,
+            text: 'Number of warnings given by precinct between 111 and 112',
+            padding: 30,
+            fontSize: 32,
+
+
+        },
+
+     layout: {
+            padding: {
+                left: 50,
+                right: 50,
+                top: 0,
+                bottom: 0
+            }
+        }
+
+
+    }
 };
 
 var chart = new Chart(ctx, config);
