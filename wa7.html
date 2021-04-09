@@ -35,47 +35,113 @@
 				<section>
 					<section>
 						<h3>Viz 1</h3>
-						<p>This is number 1. It shows the liklihood of unemployment per county</p>
+						<p>This is number 1. It shows the liklihood of just one set of values. </p>
 						
 					</section>
 
 					<section>
 						<h3>Vega</h3>
-						<p>Example</p>
+						<p>Example 1</p>
 						<div id="vis02"></div>
 						<script type="text/javascript">
-						var spec = {
-						  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-						  "width": 500,
-						  "height": 300,
-						  "data": {
-						    "url": "data/us-10m.json",
-						    "format": {
-						      "type": "topojson",
-						      "feature": "counties"
+						var spec =  {
+						  "$schema": "https://vega.github.io/schema/vega/v5.json",
+						  "description": "A basic bar chart example, with value labels shown upon mouse hover.",
+						  "width": 400,
+						  "height": 200,
+						  "padding": 5,
+
+						  "data": [
+						    {
+						      "name": "table",
+						      "values": [
+						        {"category": "A", "amount": 28},
+						        {"category": "B", "amount": 55},
+						        {"category": "C", "amount": 43},
+						        {"category": "D", "amount": 91},
+						        {"category": "E", "amount": 81},
+						        {"category": "F", "amount": 53},
+						        {"category": "G", "amount": 19},
+						        {"category": "H", "amount": 87}
+						      ]
 						    }
-						  },
-						  "transform": [{
-						    "lookup": "id",
-						    "from": {
-						      "data": {
-						        "url": "data/unemployment.tsv"
-						      },
-						      "key": "id",
-						      "fields": ["rate"]
+						  ],
+
+						  "signals": [
+						    {
+						      "name": "tooltip",
+						      "value": {},
+						      "on": [
+						        {"events": "rect:mouseover", "update": "datum"},
+						        {"events": "rect:mouseout",  "update": "{}"}
+						      ]
 						    }
-						  }],
-						  "projection": {
-						    "type": "albersUsa"
-						  },
-						  "mark": "geoshape",
-						  "encoding": {
-						    "color": {
-						      "field": "rate",
-						      "type": "quantitative"
+						  ],
+
+						  "scales": [
+						    {
+						      "name": "xscale",
+						      "type": "band",
+						      "domain": {"data": "table", "field": "category"},
+						      "range": "width",
+						      "padding": 0.05,
+						      "round": true
+						    },
+						    {
+						      "name": "yscale",
+						      "domain": {"data": "table", "field": "amount"},
+						      "nice": true,
+						      "range": "height"
 						    }
-						  }
-						};
+						  ],
+
+						  "axes": [
+						    { "orient": "bottom", "scale": "xscale" },
+						    { "orient": "left", "scale": "yscale" }
+						  ],
+
+						  "marks": [
+						    {
+						      "type": "rect",
+						      "from": {"data":"table"},
+						      "encode": {
+						        "enter": {
+						          "x": {"scale": "xscale", "field": "category"},
+						          "width": {"scale": "xscale", "band": 1},
+						          "y": {"scale": "yscale", "field": "amount"},
+						          "y2": {"scale": "yscale", "value": 0}
+						        },
+						        "update": {
+						          "fill": {"value": "steelblue"}
+						        },
+						        "hover": {
+						          "fill": {"value": "red"}
+						        }
+						      }
+						    },
+						    {
+						      "type": "text",
+						      "encode": {
+						        "enter": {
+						          "align": {"value": "center"},
+						          "baseline": {"value": "bottom"},
+						          "fill": {"value": "#333"}
+						        },
+						        "update": {
+						          "x": {"scale": "xscale", "signal": "tooltip.category", "band": 0.5},
+						          "y": {"scale": "yscale", "signal": "tooltip.amount", "offset": -2},
+						          "text": {"signal": "tooltip.amount"},
+						          "fillOpacity": [
+						            {"test": "datum === tooltip", "value": 0},
+						            {"value": 1}
+						          ]
+						        }
+						      }
+						    }
+						  ]
+						}
+
+						;
 						var opt = {"renderer": "canvas", "actions": false};
 						vegaEmbed("#vis02", spec, opt);
 						</script>
@@ -83,348 +149,142 @@
 
 					<section>
 						<h3>Vega Example Breakdown</h3>
-						<p><a href="https://vega.github.io/vega-lite/docs/spec.html">Configuring view</a></p>
-						<pre><code data-trim class='js' data-line-numbers=1|2|3|4|5-6>
+						
+						<pre><code data-trim class='js' data-line-numbers=1|2|3|4|5>
 							var spec = {
-							"$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-							"config": {
-								"view": {
-									"continuousHeight": 300,
-									"continuousWidth": 400
-						    		}
-						  	},
+							"$schema": "https://vega.github.io/schema/vega/"description": "A basic bar chart example, with value labels shown upon mouse hover.",
+  							"width": 400,
+  							"height": 200,
+  							"padding": 5,
 						</code></pre>
+					</section>
+
+					<section>
+						<p>As you can see, D,E and H are very common, But G, A, and C are very uncommon. (this does not match the description but I assure it is correct, but that the right graph is not showing up ie this is somehow graph 2 but I have no idea why it's showing up here) </p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Viz 2</h3>
+						<p>This is number 2. It compares the liklihood of orange and blue for different values.</p>
+						
+					</section>
+
+					<section>
+						<h3>Vega</h3>
+						<p>Example 2</p>
+						<div id="vis02"></div>
+						<script type="text/javascript">
+						var spec =  {
+						  "$schema": "https://vega.github.io/schema/vega/v5.json",
+						  "description": "A basic stacked bar chart example.",
+						  "width": 500,
+						  "height": 200,
+						  "padding": 5,
+
+						  "data": [
+						    {
+						      "name": "table",
+						      "values": [
+						        {"x": 0, "y": 28, "c": 0}, {"x": 0, "y": 55, "c": 1},
+						        {"x": 1, "y": 43, "c": 0}, {"x": 1, "y": 91, "c": 1},
+						        {"x": 2, "y": 81, "c": 0}, {"x": 2, "y": 53, "c": 1},
+						        {"x": 3, "y": 19, "c": 0}, {"x": 3, "y": 87, "c": 1},
+						        {"x": 4, "y": 52, "c": 0}, {"x": 4, "y": 48, "c": 1},
+						        {"x": 5, "y": 24, "c": 0}, {"x": 5, "y": 49, "c": 1},
+						        {"x": 6, "y": 87, "c": 0}, {"x": 6, "y": 66, "c": 1},
+						        {"x": 7, "y": 17, "c": 0}, {"x": 7, "y": 27, "c": 1},
+						        {"x": 8, "y": 68, "c": 0}, {"x": 8, "y": 16, "c": 1},
+						        {"x": 9, "y": 49, "c": 0}, {"x": 9, "y": 15, "c": 1}
+						      ],
+						      "transform": [
+						        {
+						          "type": "stack",
+						          "groupby": ["x"],
+						          "sort": {"field": "c"},
+						          "field": "y"
+						        }
+						      ]
+						    }
+						  ],
+
+						  "scales": [
+						    {
+						      "name": "x",
+						      "type": "band",
+						      "range": "width",
+						      "domain": {"data": "table", "field": "x"}
+						    },
+						    {
+						      "name": "y",
+						      "type": "linear",
+						      "range": "height",
+						      "nice": true, "zero": true,
+						      "domain": {"data": "table", "field": "y1"}
+						    },
+						    {
+						      "name": "color",
+						      "type": "ordinal",
+						      "range": "category",
+						      "domain": {"data": "table", "field": "c"}
+						    }
+						  ],
+
+						  "axes": [
+						    {"orient": "bottom", "scale": "x", "zindex": 1},
+						    {"orient": "left", "scale": "y", "zindex": 1}
+						  ],
+
+						  "marks": [
+						    {
+						      "type": "rect",
+						      "from": {"data": "table"},
+						      "encode": {
+						        "enter": {
+						          "x": {"scale": "x", "field": "x"},
+						          "width": {"scale": "x", "band": 1, "offset": -1},
+						          "y": {"scale": "y", "field": "y0"},
+						          "y2": {"scale": "y", "field": "y1"},
+						          "fill": {"scale": "color", "field": "c"}
+						        },
+						        "update": {
+						          "fillOpacity": {"value": 1}
+						        },
+						        "hover": {
+						          "fillOpacity": {"value": 0.5}
+						        }
+						      }
+						    }
+						  ]
+						}
+
+						;
+						var opt = {"renderer": "canvas", "actions": false};
+						vegaEmbed("#vis02", spec, opt);
+						</script>
 					</section>
 
 					<section>
 						<h3>Vega Example Breakdown</h3>
-						<p><a href="https://vega.github.io/vega-lite/docs/data.html">Importing data</a></p>
-						<pre><code data-trim class='js' data-line-numbers=2>
-							"data": {
-						    "url": "https://vega.github.io/vega-datasets/data/cars.json"
-						  },
-						</code></pre>
-						<p>It could be helpful to look at the <a href="https://vega.github.io/vega-datasets/data/cars.json">data itself</a></p>
-					</section>
-
-					<section>
-						<h3>Vega Example Breakdown</h3>
-						<p><a href="https://vega.github.io/vega-lite/docs/encoding.html">Data encoding</a></p>
-						<p>There are two "position" channels <code>x</code> and <code>y</code> and a "mark property" channel <code>color</code></p>
-						<pre><code data-trim class='js' data-line-numbers=2-5|6-9|10-12>
-							"encoding": {
-						    "color": {
-						      "field": "Origin",
-						      "type": "nominal"
-						      },
-						    "x": {
-						      "field": "Horsepower",
-						      "type": "quantitative"
-						      },
-						    "y": {
-						      "field": "Miles_per_Gallon",
-						      "type": "quantitative"
-							  }
-							},
+						
+						<pre><code data-trim class='js' data-line-numbers=1|2|3|4|5|6|7>
+							"$schema": "https://vega.github.io/schema/vega/v5.json",
+						  "description": "A basic stacked bar chart example.",
+						  "width": 500,
+						  "height": 200,
+						  "padding": 5,
+						  "data": [ {
+						      "name": "table"
 						</code></pre>
 					</section>
 
 					<section>
-						<h3>Vega Example Breakdown</h3>
-						<p><a href="https://vega.github.io/vega-lite/docs/mark.html#types">Mark type</a> defines the basic shape/type of visualization</p>
-						<pre><code data-trim class='js' data-line-numbers>
-							"mark": "point"
-						</code></pre>
+						<p>As you can see, 1,3 and 6 are very common orange values, But 2, 6, and 8 are very common blue values. Also for some reason the second plot only shows up on the example one so that's why this plot is not showing up (or rather the first one is not) </p>
 					</section>
-
-					<section>
-						<h3>Vega example</h3>
-						<p>We <i>could</i> define our visualizations purely through a Vega specification document like this</p>
-						<p>Check out the <a href="https://vega.github.io/vega-lite/examples/">example gallery</a></p>
-						<p>But most of us are more comfortable in Python, so let's explore how to make Vega visualizations there</p>
-					</section>
-
 				</section>
 
-				
-
-				<section>
-					<section>
-						<h3>Example: Data</h3>
-						<p>Adapted from the <a href="https://altair-viz.github.io/getting_started/starting.html">documentation</a></p>
-						<pre><code data-trim class="python" data-line-numbers=1|2,5|3|4>
-							import pandas as pd
-							data = pd.DataFrame({
-								'a': list('CCCDDDEEE'),
-								'b': [2, 7, 4, 1, 2, 6, 8, 4, 7]
-								})
-						</code></pre>
-					</section>
-
-					<section>
-						<h3>Example: Chart</h3>
-
-						<pre><code data-trim class="python" data-line-numbers=1|2>
-							import altair as alt
-							chart = alt.Chart(data)
-						</code></pre>
-					</section>
-
-					<section>
-						<h3>Example: Marks</h3>
-						<pre><code data-trim class="python" data-line-numbers>
-							alt.Chart(data).mark_point()
-						</code></pre>
-					</section>
-
-					<section>
-						<h3>Example: Encodings</h3>
-						<pre><code data-trim class="python" data-line-numbers>
-							alt.Chart(data).mark_point().encode(
-								x='a',
-							)
-						</code></pre>
-						<p>versus</p>
-						<pre><code data-trim class="python" data-line-numbers>
-							alt.Chart(data).mark_point().encode(
-								x='a',
-								y='b'
-							)
-						</code></pre>
-					</section>
-
-					<section>
-						<h3>Example: Transformation</h3>
-						<p>Aggregating values with <code>average</code></p>
-
-						<pre><code data-trim class="python" data-line-numbers>
-							alt.Chart(data).mark_point().encode(
-								x='a',
-								y='average(b)'
-							)
-						</code></pre>
-					</section>
-
-					<section>
-						<h3>Example: Examine JSON output</h3>
-						<pre><code data-trim class="python" data-line-numbers>
-							chart = alt.Chart(data).mark_point().encode(
-								x='a',
-								y='average(b)'
-							)
-							print(chart.to_json())
-						</code></pre>
-					</section>
-
-					<section>
-						<h3>Example: Publishing</h3>
-
-						<pre><code data-trim class="python" data-line-numbers>
-							chart = alt.Chart(data).mark_point().encode(
-								x='a',
-								y='average(b)'
-							)
-							chart.save('chart.html')
-						</code></pre>
-					</section>
-
-				</section>
-
-				<section>
-					<section>
-						<h3>Publishing</h3>
-						<p>A minimal HTML file generated by Altair:</p>
-						<pre><code class="html" data-trim data-line-numbers=1,2,16|3-7|4-6|8-15|11|12|9,13><script type="text/template">
-							<!DOCTYPE html>
-							<html>
-							<head>
-								<script src="https://cdn.jsdelivr.net/npm/vega@3">< /script>
-								<script src="https://cdn.jsdelivr.net/npm/vega-lite@2">< /script>
-								<script src="https://cdn.jsdelivr.net/npm/vega-embed@3">< /script>
-							</head>
-							<body>
-								<div id="vis"></div>
-								<script type="text/javascript">
-									var spec = {};  /* JSON dump of your chart's spec */
-									var opt = {"renderer": "canvas", "actions": false};  /* Options for the embedding */
-									vegaEmbed("#vis", spec, opt);
-								< /script>
-							</body>
-							</html>
-						</script></code></pre>
-						<p><a href="#/10/3">Link back to Wednesday in-class exercises</a></p>
-					</section>
-
-					<section>
-						<h3>Publishing into another page</h3>
-						<p>The HTML file for the chart doesn't have to stand alone</p>
-						<p>The <code>script</code> and <code>div</code> tags generated by Altair/Vega can be integrated with a pre-existing web-page</p>
-						<p>Make sure to include the JavaScript <code>spec</code> specifying the data, marks, encodings, and transformations</p>
-					</section>
-
-				</section>
-
-				<section>
-					<h3>Outline for Wednesday, April 7</h3>
-					<ul>
-						<li>Review</li>
-						<ul>
-							<li>Grammar of graphics</li>
-							<li><a href="https://vega.github.io/">Vega</a>/<a href="https://altair-viz.github.io/index.html">Altair</a></li>
-						</ul>
-						<li>Weekly Assignment 11</li>
-						<ul>
-							<li>Use <code>vega_datasets</code>, make a Vega visualization, and embed in a Reveal.js deck</li>
-							<li>Due Friday, April 9 by midnight</li>
-						</ul>
-						<li>In-class exercises</li>
-						<ul>
-							<li>Add a Vega chart to a web page</li>
-							<li>Add a Vega chart to a Reveal.js page</li>
-						</ul>
-					</ul>
-				</section>
-
-				<section>
-					<section>
-						<h3>Review: Grammar of graphics</h3>
-						<ul>
-							<li>Most plots bake in lots of design defaults</li>
-							<li>GoG asks us to make these decisions explicit</li>
-							<li>Data, marks, encodings, aesthetics</li>
-						</ul>
-					</section>
-
-					<section>
-						<h3>Review: Vega + Altair</h3>
-						<ul>
-							<li><a href="https://vega.github.io/">Vega</a> is a JavaScript GoG implementation</li>
-							<li><a href="https://altair-viz.github.io/index.html">Altair</a> is a Python library for writing Vega</li>
-							<li>Check out <a href="https://vega.github.io/vega-lite/examples/">examples</a> for inspiration</li>
-							<li><code><a href="https://github.com/vega/vega-datasets">vega_datasets</a></code> has fun data</li>
-						</ul>
-					</section>
-
-					<section>
-						<h3>Review: Exporting to web</h3>
-						<ul>
-							<li>The chart HTML file doesn't have to stand alone</li>
-							<li>Integrate <code>script</code> and <code>div</code> tags generated by Altair/Vega into a pre-existing web-page</li>
-							<li>Make sure to include the JavaScript <code>spec</code> specifying the data, marks, encodings, and transformations</li>
-						</ul>
-					</section>
-
-				</section>
-
-				
-				<section>
-					<h3>Weekly Assignment 11</h3>
-					<p><b>Due Friday, April 9 by midnight</b></p>
-					<p>Use an existing dataset within the <code><a href="https://vega.github.io/vega-datasets/">vega_datasets</a></code></p>
-					<p>Make a Reveal.js deck with at least two Altair/Vega visualizations</p>
-					<p>Include some tutorial-style documentation how you implemented Vega encodings and marks as code blocks</p>
-					<p>Interpret the results of the visualization</p>
-				</section>
-
-				<section>
-					<section>
-						<h3>In-Class Exercises</h3>
-						<p>Each exercise has a basic template file</p>
-						<p>Update the template file to use this Vega spec</p>
-						<p>Upload whichever HTML file to <a href="https://canvas.colorado.edu/courses/70121/assignments/1025586">Canvas daily assignment</a></p>
-						<h3>You don't need Altair installed to do this!</h3>
-					</section>
-
-					<section>
-						<h3>In-Class Exercises</h3>
-						<p>Use the Vega spec document below</p>
-						<pre><code data-trim data-line-numbers class="js">
-							{
-							  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-							  "config": {
-							    "view": {
-							      "continuousHeight": 300,
-							      "continuousWidth": 400
-							    }
-							  },
-							  "data": {
-							    "url": "https://vega.github.io/vega-datasets/data/cars.json"
-							  },
-							  "encoding": {
-							    "color": {
-							      "field": "Origin",
-							      "type": "nominal"
-							    },
-							    "x": {
-							      "field": "Horsepower",
-							      "type": "quantitative"
-							    },
-							    "y": {
-							      "field": "Miles_per_Gallon",
-							      "type": "quantitative"
-							    }
-							  },
-							  "mark": "point"
-							};
-						</code></pre>
-					</section>
-
-					<section>
-						<h3>In-Class Exercises</h3>
-						<p>Upload at least one of your files to Canvas</p>
-						<p><a href="https://canvas.colorado.edu/courses/70121/assignments/1025586">"Apr 7 : in-class"</a></p>
-						<p>Simple binary participation</p>
-					</section>
-
-					<section>
-						<h3>Exercise 1: Add a simple chart to a web page</h3>
-						<ol>
-							<li>Download/copy the template file from <a href="https://github.com/cuinfoscience/INFO3402-Spring2021/blob/main/Week13/html_template.html">GitHub</a> or <a href="https://canvas.colorado.edu/files/31244623/download?download_frd=1">Canvas</a></li>
-							<li>Open in text editor</li>
-							<li>Add the tags to import Vega (<a href="#/6/0/0">Slide 6</a>)</li>
-							<li>Add the Vega spec document (<a href="#/10/1">Slide 10/1</a>)</li>
-							<li>Test to make sure the visualization appears</li>
-						</ol>
-					</section>
-
-					<section>
-						<h3>Exercise 2: Add a simple chart to Reveal.js</h3>
-						<ol>
-							<li>Download/copy the template file from <a href="https://github.com/cuinfoscience/INFO3402-Spring2021/blob/main/Week13/reveal_template.html">GitHub</a> or <a href="https://canvas.colorado.edu/files/31244625/download?download_frd=1">Canvas</a></li>
-							<li>Open in text editor</li>
-							<li>Add the tags to import Vega (<a href="#/6/0/0">Slide 6</a>)</li>
-							<li>Add the Vega spec document (<a href="#/10/1">Slide 10/1</a>)</li>
-							<li>Test to make sure the visualization appears</li>
-						</ol>
-					</section>
-
-					<section>
-						<h3>Exercise solutions</h3>
-						<p>HTML exercise completed <a href="https://github.com/cuinfoscience/INFO3402-Spring2021/blob/main/Week13/html_template_completed.html">here</a></p>
-						<p>Reveal.js exercise completed <a href="https://github.com/cuinfoscience/INFO3402-Spring2021/blob/main/Week13/reveal_template_completed.html">here</a></p>
-					</section>
-
-				</section>
-
-				<section>
-					<h3>Friday's class</h3>
-					<p>Show and tell and debugging works-in-progress</p>
-				</section>
-
-				<section>
-					<h3>Outline for Friday, April 9</h3>
-					<ul>
-						<li>Weekly Assignment 11</li>
-						<ul>
-							<li>Use <code>vega_datasets</code>, make a Vega visualization, and embed in a Reveal.js deck</li>
-							<li>Due Friday, April 9 by midnight</li>
-						</ul>
-						<li>Showcase submitted or in-progress assignments</li>
-						<li>Answer questions about implementations</li>
-						</ul>
-					</ul>
-				</section>
-
+					
 			</div>
 		</div>
 
