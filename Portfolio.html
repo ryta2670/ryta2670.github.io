@@ -16,6 +16,22 @@
   	background-image: url('moun.jpg');
   	background-size: cover;
   }
+  .carousel-inner img {
+    /*-webkit-filter: grayscale(90%);
+    filter: grayscale(90%);  make all photos black and white */ 
+    width: 100%; /* Set width to 100% */
+    margin: auto;
+  }
+  .carousel-caption h3 {
+    color: #000000 !important;
+  }
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+    }
+  }
+  .container {
+    padding: 80px 120px;
   </style>
 </head>
 <body>
@@ -43,23 +59,72 @@
   </div>
 </nav>
 
-<div class = "container">
-<p class = lead>
-Click here to see my repositories on Github!
+<div id="PRODUCE" class="bg-1">
+  <div class="container">
+    <h3 class="text-center">My Portfolio</h3>
+    <p class="text-center"><em>The first project is an exploration into what could have made an already existing website better.
 
-<button onclick="document.location='https://github.com/ryta2670?tab=repositories'" type="button" >Git it</button>
-	</p>
-<p class = lead>
-	Click here to see my inspiration and redesign pages:
-	<button onclick="document.location='inspiration.html'" type="button" >inspiration</button>
-	<button onclick="document.location='redesign.html'" type="button" >redesign</button>
-  
+ 
 
-  <p class = lead>
+For this website, BeHeardBoulder, we conducted interviews and observations in order to receieve feedback on the usability and aethetic of the website. Most of our feedback can be summarized by this infographic we created in photoshop.
+
+In the end, the city of Boulder asked us to send them a picture of our infographic, so that they might use our reccomendations to help in the development of their website and goal of getting voices of Boulder heard.</em></p>
+<br>
+    <p class = lead>
 some vizualization work
 
 <button onclick="document.location='module3.html'" type="button" >viz</button>
   </p>
+  </div>
+</div>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="git.png" alt="orange York" width="1200" height="700">
+        <div class="carousel-caption">
+          <h3><a href="https://github.com/ryta2670?tab=repositories">Github page</a></h3>
+        </div>      
+      </div>
+
+      <div class="item">
+        <img src="produce.jpg" alt="Chicago" width="1200" height="700">
+        <div class="carousel-caption">
+          <h3><a href="portfolio/producepoint.html">Produce Point Website</a></h3>
+        </div>      
+      </div>
+    
+      <div class="item">
+        <img src="beheard.png" alt="Los Angeles" width="1200" height="700">
+        <div class="carousel-caption">
+          <h3>Be Heard Boulder website redesign ideas</h3>
+        </div>      
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>
+
+
+
+
+  
 </div>
 
 </body>
