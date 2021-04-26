@@ -27,9 +27,9 @@
   .person {
     border: 10px solid transparent;
     margin-bottom: 25px;
-    width: 80%;
-    height: 80%;
-    opacity: 0.7;
+    width: 100%;
+    height: 100%;
+    
   }
   .person:hover {
     border-color: #00650F;
@@ -236,8 +236,9 @@
 <!-- Container (The mission Section) -->
 <div id="mission" class="container text-center">
   <h3>OUR GOAL</h3>
-  <p><em>Empowering you!</em></p>
-  <p> In addition to our app/ kiosk, this website is made to help you find types of produce near you that that meet your requirements. Click on the logos to find out more! </p>
+  
+  <p> In addition to our app/ kiosk, this website is made to help you find types of produce near you that that meet your requirements.  </p>
+  <p><em>Click on the logos to find out more!</em></p>
   <br>
   <div class="row">
     <div class="col-sm-4">
@@ -273,6 +274,7 @@
         <p>Pick up at store</p>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -280,65 +282,103 @@
 <div id="PRODUCE" class="bg-1">
   <div class="container">
     <h3 class="text-center">OUR PRODUCE</h3>
-    <p class="text-center">Example.<br> This could be king soopers </p>
-    <ul class="list-group">
-      <li class="list-group-item">Artichoke <span class="label label-primary">Non GMO!</span><span class="label label-warning">170 miles</span><span class="badge">24</span></li>
-      <li class="list-group-item">Squash <span class="label label-success">Sustainably sourced!</span><span class="badge">41</span></li> 
-      <li class="list-group-item">Strawberries <span class="label label-info">Local!</span><span class="badge">64</span></li> 
-    </ul>
+    <p class="text-center">Click on the pictures for more choice.</p>
+    
     
     <div class="row text-center">
+      
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="artichoke.jpg" alt="Paris" width="400" height="300">
+          <a href="#demo5" data-toggle="collapse">
+        <img src="artichoke.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
+      </a>
           <p><strong>Artichoke</strong></p>
-          <p>$2.16 per pound</p>
-          <p><span class="label label-primary">Non GMO!</span><span class="label label-warning">170 miles</span><span class="badge">24</span></p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button>
+        </div>
+        <div id="demo5" class="collapse">
+          <p> <ul class="list-group">
+                <li class="list-group-item"> <span class="label label-primary">Non GMO!</span><span class="label label-warning">170 miles</span><span class="badge">24</span><p>$2.16 per pound</p><button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button></li>
+                <li class="list-group-item"> <span class="label label-success">Sustainably sourced!</span><span class="badge">41</span><p>$2.16 per pound</p><button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button></li> 
+                <li class="list-group-item"> <span class="label label-info">Local!</span><span class="badge">64</span> <p>$2.16 per pound</p><button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button></li> 
+              </ul> </p>
+      </div>
+    </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <a href="#demo6" data-toggle="collapse">
+        <img src="avocado.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
+      </a>
+          <p><strong>Avocado</strong></p>
+        </div>
+        <div id="demo6" class="collapse">
+          <p> <ul class="list-group">
+                <li class="list-group-item"> <span class="label label-primary">Non GMO!</span><span class="label label-warning">170 miles</span><span class="badge">24</span><p>$2.16 per pound</p><button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button></li>
+                <li class="list-group-item"> <span class="label label-success">Sustainably sourced!</span><span class="label label-warning">70 miles</span><span class="badge">41</span><p>$2.06 per pound</p><button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button></li> 
+                <li class="list-group-item"> <span class="label label-info">Local!</span><span class="label label-warning">20 miles</span><span class="badge">64</span> <p>$2.11 per pound</p><button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button></li> 
+              </ul> </p>
         </div>
       </div>
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="squash.jpg" alt="New York" width="400" height="300">
-          <p><strong>Squash</strong></p>
-          <p>$1.52 per pound</p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button>
+          <a href="#demo7" data-toggle="collapse">
+        <img src="blue.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
+      </a>
+          <p><strong>Blueberries</strong></p>
         </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <img src="strawberries.jpg" alt="San Francisco" width="400" height="300">
-          <p><strong>Strawberries</strong></p>
-          <p>$2.77 per pound</p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button>
-        </div>
+        <div id="demo7" class="collapse">
+          <p> <ul class="list-group">
+                <li class="list-group-item"> <span class="label label-primary">Non GMO!</span><span class="label label-warning">170 miles</span><span class="badge">24</span><p>$2.16 per pound</p><button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button></li>
+                <li class="list-group-item"> <span class="label label-success">Sustainably sourced!</span><span class="badge">41</span><p>$2.16 per pound</p><button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button></li> 
+                <li class="list-group-item"> <span class="label label-info">Local!</span><span class="badge">64</span> <p>$2.16 per pound</p><button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button></li> 
+              </ul> </p>
       </div>
     </div
+  </div>
   </div>
 
   <div class="row text-center">
     <div class="col-sm-4">
-        <div class="thumbnail">
-          <img src="oj.jpg" alt="Paris" width="400" height="300">
+    <div class="thumbnail">
+          <a href="#demo8" data-toggle="collapse">
+        <img src="oj.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
+      </a>
           <p><strong>Oranges</strong></p>
-          <p>$2.16 per pound</p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button>
+        </div>
+        <div id="demo8" class="collapse">
+          <p> <ul class="list-group">
+                <li class="list-group-item"> <span class="label label-primary">Non GMO!</span><span class="label label-warning">170 miles</span><span class="badge">24</span><p>$2.16 per pound</p><button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button></li>
+                <li class="list-group-item"> <span class="label label-success">Sustainably sourced!</span><span class="label label-warning">70 miles</span><span class="badge">41</span><p>$2.06 per pound</p><button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button></li> 
+                <li class="list-group-item"> <span class="label label-info">Local!</span><span class="label label-warning">20 miles</span><span class="badge">64</span> <p>$2.11 per pound</p><button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button></li> 
+              </ul> </p>
         </div>
       </div>
+
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="potato.jpg" alt="New York" width="400" height="300">
+          <a href="#demo9" data-toggle="collapse">
+        <img src="potato.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
+      </a>
           <p><strong>Potato</strong></p>
-          <p>$1.52 per pound</p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button>
         </div>
-      </div>
+        <div id="demo9" class="collapse">
+          <p> <ul class="list-group">
+                <li class="list-group-item"> <span class="label label-primary">Non GMO!</span><span class="label label-warning">170 miles</span><span class="badge">24</span><p>$2.16 per pound</p><button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button></li>
+                <li class="list-group-item"> <span class="label label-success">Sustainably sourced!</span><span class="label label-warning">70 miles</span><span class="badge">41</span><p>$2.06 per pound</p><button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button></li> 
+                <li class="list-group-item"> <span class="label label-info">Local!</span><span class="label label-warning">20 miles</span><span class="badge">64</span> <p>$2.11 per pound</p><button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button></li> 
+              </ul> </p>
+        </div>      </div>
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="blue.jpg" alt="San Francisco" width="400" height="300">
-          <p><strong>Blueberries</strong></p>
-          <p>$2.77 per pound</p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button>
+          <a href="#demo10" data-toggle="collapse">
+        <img src="strawberries.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
+      </a>
+          <p><strong>Strawberries</strong></p>
+        </div>
+        <div id="demo10" class="collapse">
+          <p> <ul class="list-group">
+                <li class="list-group-item"> <span class="label label-primary">Non GMO!</span><span class="label label-warning">170 miles</span><span class="badge">24</span><p>$2.16 per pound</p><button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button></li>
+                <li class="list-group-item"> <span class="label label-success">Sustainably sourced!</span><span class="label label-warning">70 miles</span><span class="badge">41</span><p>$2.06 per pound</p><button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button></li> 
+                <li class="list-group-item"> <span class="label label-info">Local!</span><span class="label label-warning">20 miles</span><span class="badge">64</span> <p>$2.11 per pound</p><button class="btn" data-toggle="modal" data-target="#myModal">Buy Produce</button></li> 
+              </ul> </p>
         </div>
       </div>
     </div>
@@ -386,7 +426,7 @@
 
 <div id="contact" class="container">
 <h3 class="text-center">Find store on Google Maps</h3>
-<p class="text-center">Example.<br>G stands for google, or grocer.</p>
+<p class="text-center">By choosing your store here, our site retrieves information from that specific store.<br>G stands for google, or grocer.</p>
 <!-- Image of location/map -->
 <img src="map.jpg" class="img-responsive" style="width:100%">
 
